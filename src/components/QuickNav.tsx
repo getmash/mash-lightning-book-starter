@@ -1,8 +1,7 @@
+import { Link } from "gatsby";
 import * as React from "react";
 import { FaListUl } from "react-icons/fa";
-import { Link } from "gatsby";
-
-import { useStaticTableOfContents } from "../queries";
+import useTableOfContents from "../queries/useTableOfContents";
 
 type PageLinkProps = {
   className?: string;
@@ -32,7 +31,7 @@ type QuickNavProps = {
 
 export default function QuickNav(props: QuickNavProps) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const toc = useStaticTableOfContents();
+  const toc = useTableOfContents();
 
   const [show, setShow] = React.useState(false);
 
@@ -80,19 +79,20 @@ export default function QuickNav(props: QuickNavProps) {
                       {chapter.sections.length === 0 ? "" : `Chapter ${chapter.number}:`} {chapter.title}
                     </li>
                   </PageLink>
-                  {chapter.sections.length > 1 && chapter.sections.map(section => (
-                    <PageLink
-                      active={props.currentHref === section.link}
-                      key={section.link}
-                      to={section.link}
-                      onClick={() => setShow(false)}
-                      className="text-sm font-normal"
-                    >
-                      <li className="p-4 m-0">
-                        {chapter.number}.{section.number} {section.title}
-                      </li>
-                    </PageLink>
-                  ))}
+                  {chapter.sections.length > 1 &&
+                    chapter.sections.map(section => (
+                      <PageLink
+                        active={props.currentHref === section.link}
+                        key={section.link}
+                        to={section.link}
+                        onClick={() => setShow(false)}
+                        className="text-sm font-normal"
+                      >
+                        <li className="p-4 m-0">
+                          {chapter.number}.{section.number} {section.title}
+                        </li>
+                      </PageLink>
+                    ))}
                 </React.Fragment>
               ))}
             </ul>

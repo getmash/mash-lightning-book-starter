@@ -1,4 +1,6 @@
 import * as React from "react";
+import { isMobile } from "react-device-detect";
+import { Helmet } from "react-helmet";
 import { FaChevronRight } from "react-icons/fa";
 import { Link, graphql, PageProps, navigate } from "gatsby";
 
@@ -7,12 +9,13 @@ import Paywall, { Chapter } from "../mash/Paywall";
 import QuickNav from "../components/QuickNav";
 import Seo from "../components/Seo";
 import { useSizeDocumentBody } from "../hooks/useSizeDocumentBody";
+import useSiteMetdata from "../queries/useSiteMetadata";
+import BoostButton from "../mash/BoostButton";
 
 const LEFT_KEY = "ArrowLeft";
 const RIGHT_KEY = "ArrowRight";
 
 type PageQueryData = {
-  site: { siteMetadata: { shortTitle: string; chapters: { number: number; title: string }[] } };
   markdownRemark: Chapter;
   next: { fields: { slug: string }; frontmatter: { chapter: number; section: number; title } } | null;
   prev: { fields: { slug: string }; frontmatter: { chapter: number; section: number; title } } | null;
@@ -21,9 +24,11 @@ type PageQueryData = {
 function ChapterTemplate(props: PageProps<PageQueryData>) {
   const { mash } = useMash();
 
-  const { site, markdownRemark, next, prev } = props.data;
+  const { markdownRemark, next, prev } = props.data;
 
-  const chapterMap = site.siteMetadata.chapters.reduce<{
+  const metadata = useSiteMetdata();
+
+  const chapterMap = metadata.book.chapters.reduce<{
     [num: string]: { number: number; title: string };
   }>((map, cur) => {
     map[cur.number] = cur;
@@ -54,11 +59,15 @@ function ChapterTemplate(props: PageProps<PageQueryData>) {
 
   return (
     <>
+      <Helmet>
+        <html lang="en" />
+      </Helmet>
       <Seo title={markdownRemark.frontmatter.title} />
+      <BoostButton />
       <div className="page overflow-hidden flex flex-col h-full">
         <div className="header py-4 px-8 border font-bold flex items-center justify-between">
           <Link to="/" className="text-black hover:underline">
-            {site.siteMetadata.shortTitle}
+            {metadata.shortTitle}
           </Link>
           <QuickNav currentHref={props.path} />
         </div>
@@ -67,7 +76,7 @@ function ChapterTemplate(props: PageProps<PageQueryData>) {
             <Paywall chapter={markdownRemark} />
           </article>
           {next && (
-            <div className="footer py-6 w-full border-t">
+            <div className="footer py-6 w-full border-t" style={{ paddingBottom: isMobile ? "5rem" : undefined }}>
               <div className="footer-content max-w-reading m-auto flex justify-between items-center pl-4 pr-20">
                 <div className="next-info text-sm">
                   <div className="font-bold">
@@ -99,15 +108,6 @@ export default ChapterTemplate;
 
 export const pageQuery = graphql`
   query ChapterBySlug($id: String!, $prevId: String, $nextId: String) {
-    site: site {
-      siteMetadata {
-        shortTitle
-        chapters {
-          number
-          title
-        }
-      }
-    }
     markdownRemark(id: { eq: $id }) {
       id
       html

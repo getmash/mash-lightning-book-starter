@@ -2,9 +2,9 @@ import HTMLReactParser from "html-react-parser";
 import * as React from "react";
 
 import LoadingSpinner from "../components/LoadingSpinner";
-import { useMash } from "./Mash";
+import useSiteMetdata from "../queries/useSiteMetadata";
 import LocalStorage from "./LocalStorage";
-import mashConfig from "../../mash-config";
+import { useMash } from "./Mash";
 
 export type Chapter = {
   id: string;
@@ -27,12 +27,14 @@ type PaywallProps = {
   chapter: Chapter;
 };
 
-const key = (id: string) => `mim_${id}`;
-
 export default function Paywall(props: PaywallProps) {
+  const metadata = useSiteMetdata();
+
   const { mash } = useMash();
 
   const [state, setState] = React.useState(ContentState.Locked);
+
+  const key = (id: string) => `mash_ln_book_${metadata.mash.earnerID}_${id}`;
 
   const access = () => {
     if (!mash) {
@@ -43,7 +45,7 @@ export default function Paywall(props: PaywallProps) {
     setState(ContentState.Loading);
 
     mash
-      .hasAccess(mashConfig.resourceID)
+      .hasAccess(metadata.mash.resourceID)
       .then(result => {
         if (result) {
           LocalStorage.set(key(props.chapter.id), true);
@@ -71,7 +73,7 @@ export default function Paywall(props: PaywallProps) {
 
     if (mash) {
       mash
-        .userHasValidBudget(mashConfig.resourceID)
+        .userHasValidBudget(metadata.mash.resourceID)
         .then(res => {
           if (res) {
             access();

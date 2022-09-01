@@ -7,19 +7,39 @@ const config: GatsbyConfig = {
     author: "Mike Dedys",
     description:
       "This timely tale is packed with striking imagery and descriptions, highlighting how Bitcoin is upending everything we thought we knew about money, and drawing attention to issues plaguing our current monetary system.",
-    chapters: [
-      {
-        number: 1,
-        title: "Lorem Ipsum",
-      },
-      {
-        number: 2,
-        title: "Why Lorem Ipsum",
-      },
-    ],
     siteUrl: "https://loremipsumbook.com/",
     social: {
       twitter: "getmash",
+      email: "join@getmash.com",
+    },
+    book: {
+      amazon: "https://someamazonbooklink.com",
+      chapters: [
+        {
+          number: 1,
+          title: "Lorem Ipsum",
+        },
+        {
+          number: 2,
+          title: "Why Lorem Ipsum",
+        },
+        {
+          number: 3,
+          title: "Where does it come from?",
+        },
+      ],
+    },
+    mash: {
+      sdk: "https://wallet.getmash.com/sdk/sdk.js",
+      earnerID: "<earner id>",
+      resourceID: "<resource id>",
+      boosts: {
+        icon: "lightning",
+        variant: "dark",
+        layoutMode: "float",
+        floatLocationDesktop: "bottom-center",
+        floatLocationMobile: "bottom-left",
+      },
     },
   },
   plugins: [

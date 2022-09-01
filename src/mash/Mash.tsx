@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import useScript, { State } from "../hooks/useScript";
-import MashConfig from "../../mash-config";
+import useSiteMetdata from "../queries/useSiteMetadata";
 
 type MashSettings = {
   id: string;
@@ -28,7 +28,8 @@ export default function Mash(props: React.PropsWithChildren<{}>) {
   const [mash, setMash] = React.useState<Mash | null>(null);
   const [ready, setReadyStatus] = React.useState(false);
 
-  const state = useScript(MashConfig.sdk);
+  const metadata = useSiteMetdata();
+  const state = useScript(metadata.mash.sdk);
 
   React.useEffect(() => {
     if (state === State.Ready && window.Mash) {
@@ -38,7 +39,7 @@ export default function Mash(props: React.PropsWithChildren<{}>) {
 
   React.useEffect(() => {
     if (!mash) return;
-    mash.init({ id: MashConfig.earnerID }).then(() => setReadyStatus(true));
+    mash.init({ id: metadata.mash.earnerID }).then(() => setReadyStatus(true));
   }, [mash]);
 
   return <MashContext.Provider value={{ mash, ready }}>{props.children}</MashContext.Provider>;

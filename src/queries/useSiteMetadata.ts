@@ -14,6 +14,7 @@ type MashConfig = {
   sdk: string;
   earnerID: string;
   resourceID: string;
+  handle: string;
   boosts: MashBoostConfig;
 };
 

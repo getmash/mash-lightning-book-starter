@@ -1,6 +1,10 @@
 # Mash Lightning Book Starter
 
-Kick off your project with this blog boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+<img src="https://uploads-ssl.webflow.com/6113f4faacfcdff6db1e95f4/611405d78ad06bf392d31e13_MASH-Logo%2BMASH-noborder-right-black-black.png" height="100px" width="auto" />
+
+Kick off your project with this Book starter powered by Mash to allow you to easily monetize any book on the web.
+
+Demo: https://mashlightningbookstarter.gatsbyjs.io/
 
 ## Quick start
 
@@ -43,7 +47,7 @@ Kick off your project with this blog boilerplate. This starter ships with the ma
 
 ### Mash Configuration
 
-  Open `mash-config.ts` and populate with values that get can found in the Mash earner dashboard. [Earner Dashboard](https://wallet.getmash.com/earn). The SDK value should not change.
+  The mash config can be found in `gatsby-config.ts` under `mash` key. All settings can be changed there and it will be reflected across the app. In order to have Mash working correctly you will require a earner account. This can be created in the [Earner Dashboard](https://wallet.getmash.com/earn). The SDK value should not change.
 
 ### Gatsby Config
 
@@ -71,7 +75,7 @@ Kick off your project with this blog boilerplate. This starter ships with the ma
 
   `free`: Boolean flag that will let the Paywall component know if this content should be automatically shown
 
-  Chpater and section are used for ordering the book content correctly.
+  Chapter and section are used for ordering the book content correctly.
 
   **Chapter 0** is used as frontmatter for the book. It is helpful to use this chapter number to add pages such as Legal, Dedications. 
 

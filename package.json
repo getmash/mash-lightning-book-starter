@@ -1,6 +1,6 @@
 {
   "name": "mash-lightning-book-starter",
-  "description": "A gatsby starter project to implement Mash powered lightning book",
+  "description": "A gatsby starter project to implement a book that is monetized using Mash",
   "version": "1.0.0",
   "scripts": {
     "build": "gatsby build",
@@ -45,7 +45,8 @@
   "keywords": [
     "gatsby",
     "bitcoin",
-    "lightning"
+    "lightning",
+    "mash"
   ],
   "license": "0BSD",
   "packageManager": "yarn@3.2.1"

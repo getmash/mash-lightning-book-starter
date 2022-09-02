@@ -1,6 +1,5 @@
 import * as React from "react";
 import { isMobile } from "react-device-detect";
-import { Helmet } from "react-helmet";
 import { FaChevronRight } from "react-icons/fa";
 import { Link, graphql, PageProps, navigate } from "gatsby";
 
@@ -59,9 +58,6 @@ function ChapterTemplate(props: PageProps<PageQueryData>) {
 
   return (
     <>
-      <Helmet>
-        <html lang="en" />
-      </Helmet>
       <Seo title={markdownRemark.frontmatter.title} />
       <BoostButton />
       <div className="page overflow-hidden flex flex-col h-full">

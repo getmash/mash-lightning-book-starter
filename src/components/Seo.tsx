@@ -61,7 +61,7 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: lang || "en",
       }}
       title={pageTitle}
       pageTitleTemplate={pageTitle ? `%s | ${pageTitle}` : null}
@@ -103,7 +103,13 @@ const Seo = ({ description, lang, meta, title }: SeoProps) => {
           content: image,
         },
       ].concat(meta || [])}
-    />
+    >
+      {
+        // @ts-ignore
+        <link rel="preconnect" href="https://firebase.googleapis.com" crossOrigin />
+      }
+      <link rel="preconnect" href="https://wallet.getmash.com" />
+    </Helmet>
   );
 };
 

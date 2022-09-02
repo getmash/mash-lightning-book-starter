@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { Helmet } from "react-helmet";
 import { FaAmazon, FaBookOpen, FaEnvelope, FaTwitter } from "react-icons/fa";
 
 import { useMash } from "../mash/Mash";
@@ -22,9 +21,6 @@ function BookIndex() {
 
   return (
     <>
-      <Helmet>
-        <html lang="en" />
-      </Helmet>
       <Seo />
       <BoostButton />
       <div className="page overflow-hidden flex flex-col h-full" style={{ visibility: !ready ? "hidden" : "visible" }}>
@@ -104,15 +100,15 @@ function BookIndex() {
                     {chapter.sections.length > 1 && (
                       <ol className="sections border rounded-lg divide-y list-none p-0 ml-0">
                         {chapter.sections.map(section => (
-                          <Link
-                            key={section.link}
-                            to={section.link}
-                            className="block hover:bg-slate-100 active:bg-slate-200 text-black"
-                          >
-                            <li className="section py-4 px-8 mb-0">
+                          <li className="m-0 p-0">
+                            <Link
+                              key={section.link}
+                              to={section.link}
+                              className="section py-4 px-8 mb-0 block hover:bg-slate-100 active:bg-slate-200 text-black"
+                            >
                               {chapter.number}.{section.number} {section.title}
-                            </li>
-                          </Link>
+                            </Link>
+                          </li>
                         ))}
                       </ol>
                     )}

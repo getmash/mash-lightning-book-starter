@@ -81,17 +81,17 @@ export default function QuickNav(props: QuickNavProps) {
                   </PageLink>
                   {chapter.sections.length > 1 &&
                     chapter.sections.map(section => (
-                      <PageLink
-                        active={props.currentHref === section.link}
-                        key={section.link}
-                        to={section.link}
-                        onClick={() => setShow(false)}
-                        className="text-sm font-normal"
-                      >
-                        <li className="p-4 m-0">
+                      <li className="m-0 p-0">
+                        <PageLink
+                          active={props.currentHref === section.link}
+                          key={section.link}
+                          to={section.link}
+                          onClick={() => setShow(false)}
+                          className="text-sm font-normal p-4 m-0"
+                        >
                           {chapter.number}.{section.number} {section.title}
-                        </li>
-                      </PageLink>
+                        </PageLink>
+                      </li>
                     ))}
                 </React.Fragment>
               ))}

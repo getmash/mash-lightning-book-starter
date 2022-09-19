@@ -5,6 +5,7 @@ import { Link, graphql, PageProps, navigate } from "gatsby";
 
 import { useMash } from "../mash/Mash";
 import Paywall, { Chapter } from "../mash/Paywall";
+import LoadingSpinner from "../components/LoadingSpinner";
 import QuickNav from "../components/QuickNav";
 import Seo from "../components/Seo";
 import { useSizeDocumentBody } from "../hooks/useSizeDocumentBody";
@@ -13,6 +14,22 @@ import BoostButton from "../mash/BoostButton";
 
 const LEFT_KEY = "ArrowLeft";
 const RIGHT_KEY = "ArrowRight";
+
+const MashReadyCheck = (props: React.PropsWithChildren<{}>) => {
+  const { ready, mash } = useMash();
+
+  if (!ready || !mash) {
+    return (
+      <div className="max-w-6xl mx-auto p-12 h-full flex flex-col">
+        <div className="flex justify-center items-center h-full">
+          <LoadingSpinner height={42} width={42} />
+        </div>
+      </div>
+    );
+  }
+
+  return <>{props.children}</>;
+};
 
 type PageQueryData = {
   markdownRemark: Chapter;
@@ -68,32 +85,34 @@ function ChapterTemplate(props: PageProps<PageQueryData>) {
           <QuickNav currentHref={props.path} />
         </div>
         <div className="h-full w-full flex flex-col overflow-auto">
-          <article className="max-w-reading w-full m-auto px-4 pt-2 pb-8">
-            <Paywall chapter={markdownRemark} />
-          </article>
-          {next && (
-            <div className="footer py-6 w-full border-t" style={{ paddingBottom: isMobile ? "5rem" : undefined }}>
-              <div className="footer-content max-w-reading m-auto flex justify-between items-center pl-4 pr-20">
-                <div className="next-info text-sm">
-                  <div className="font-bold">
-                    Next {markdownRemark.frontmatter.chapter === next?.frontmatter.chapter ? "Section" : "Chapter"}:
+          <MashReadyCheck>
+            <article className="max-w-reading w-full m-auto px-4 pt-2 pb-8">
+              <Paywall chapter={markdownRemark} />
+            </article>
+            {next && (
+              <div className="footer py-6 w-full border-t" style={{ paddingBottom: isMobile ? "5rem" : undefined }}>
+                <div className="footer-content max-w-reading m-auto flex justify-between items-center pl-4 pr-20">
+                  <div className="next-info text-sm">
+                    <div className="font-bold">
+                      Next {markdownRemark.frontmatter.chapter === next?.frontmatter.chapter ? "Section" : "Chapter"}:
+                    </div>
+                    <div>
+                      {markdownRemark.frontmatter.chapter === next?.frontmatter.chapter
+                        ? next?.frontmatter.title
+                        : chapterMap[next.frontmatter.chapter]?.title || ""}
+                    </div>
                   </div>
-                  <div>
-                    {markdownRemark.frontmatter.chapter === next?.frontmatter.chapter
-                      ? next?.frontmatter.title
-                      : chapterMap[next.frontmatter.chapter]?.title || ""}
-                  </div>
+                  <Link
+                    to={next?.fields.slug}
+                    className="block rounded-full bg-black px-5 py-2 font-bold text-white flex items-center gap-1 hover:bg-slate-500 active:bg-slate-700 max-h-11 sans-serif"
+                  >
+                    Next
+                    <FaChevronRight />
+                  </Link>
                 </div>
-                <Link
-                  to={next?.fields.slug}
-                  className="block rounded-full bg-black px-5 py-2 font-bold text-white flex items-center gap-1 hover:bg-slate-500 active:bg-slate-700 max-h-11 sans-serif"
-                >
-                  Next
-                  <FaChevronRight />
-                </Link>
               </div>
-            </div>
-          )}
+            )}
+          </MashReadyCheck>
         </div>
       </div>
     </>

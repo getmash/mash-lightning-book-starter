@@ -13,15 +13,18 @@ const MashContext = React.createContext<MashContextValue>({
   ready: false,
 });
 
-const mash = new Mash();
-
 export default function MashProvider(props: React.PropsWithChildren<{}>) {
+  const [mash, setMash] = React.useState<Mash | null>(null);
   const [ready, setReadyStatus] = React.useState(false);
 
   const metadata = useSiteMetdata();
 
   React.useEffect(() => {
-    mash.init({ id: metadata.mash.earnerID, position: metadata.mash.walletPosition }).then(() => setReadyStatus(true));
+    const _mash = new Mash();
+    _mash.init({ id: metadata.mash.earnerID, position: metadata.mash.walletPosition }).then(() => {
+      setMash(_mash);
+      setReadyStatus(true);
+    });
   }, []);
 
   return <MashContext.Provider value={{ mash, ready }}>{props.children}</MashContext.Provider>;

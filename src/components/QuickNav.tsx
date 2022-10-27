@@ -81,7 +81,7 @@ export default function QuickNav(props: QuickNavProps) {
                   </PageLink>
                   {chapter.sections.length > 1 &&
                     chapter.sections.map(section => (
-                      <li className="m-0 p-0">
+                      <li className="m-0 p-0" key={section.link}>
                         <PageLink
                           active={props.currentHref === section.link}
                           key={section.link}

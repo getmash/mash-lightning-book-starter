@@ -30,10 +30,20 @@ const config: GatsbyConfig = {
       ],
     },
     mash: {
-      sdk: "https://wallet.getmash.com/sdk/sdk.js",
       earnerID: "3ca1325e-eb19-49f8-bad2-6d844b85b394",
       resourceID: "d2f6bcce-daf0-4c54-b95d-4982aa7b7fa6",
       handle: "mashearner",
+      walletPosition: {
+        desktop: {
+          floatLocation: "bottom-right",
+          shiftUp: 0,
+          shiftRight: 0,
+          shiftLeft: 0,
+        },
+        mobile: {
+          floatLocation: "bottom-right",
+        },
+      },
       boosts: {
         icon: "lightning",
         variant: "dark",

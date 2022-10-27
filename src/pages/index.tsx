@@ -100,7 +100,7 @@ function BookIndex() {
                     {chapter.sections.length > 1 && (
                       <ol className="sections border rounded-lg divide-y list-none p-0 ml-0">
                         {chapter.sections.map(section => (
-                          <li className="m-0 p-0">
+                          <li className="m-0 p-0" key={`${section.number}-${section.title}`}>
                             <Link
                               key={section.link}
                               to={section.link}

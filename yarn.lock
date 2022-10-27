@@ -1564,6 +1564,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@getmash/client-sdk@npm:^1.0.0":
+  version: 1.1.1
+  resolution: "@getmash/client-sdk@npm:1.1.1"
+  dependencies:
+    "@getmash/jsonrpc-engine": ^1.0.2
+    "@getmash/post-message": ^1.0.2
+  checksum: c608ff8511fc6810aabeba0b48591345c312808053bedf65a27afbb49589395a03e6f9b649f00ee17e7edcb7a55e07f0539b72effa9c3ae44e22ba3c2a2d63a4
+  languageName: node
+  linkType: hard
+
+"@getmash/jsonrpc-engine@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@getmash/jsonrpc-engine@npm:1.0.2"
+  dependencies:
+    "@getmash/post-message": ^1.0.2
+    uuid: ^9.0.0
+  checksum: b06e1ea8d10308a40cc3b12cdaf0cd4ae533b8607d2778cb2fa41c60bbb46875b15db9bcdfb77ffdf944d3ecc775ef1b6ddf10efe010090084edb060279df0f7
+  languageName: node
+  linkType: hard
+
+"@getmash/post-message@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@getmash/post-message@npm:1.0.2"
+  dependencies:
+    uuid: ^9.0.0
+  checksum: 666f54c205c55c1bf2a3db66f172f7afc18b6315a695f81739aa8fa646fe6f55f15a2e3b3b820615b68c33d65578f6356ecc972f735788d306d47cd95009670e
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/add@npm:^3.1.1":
   version: 3.1.1
   resolution: "@graphql-codegen/add@npm:3.1.1"
@@ -11017,6 +11046,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mash-lightning-book-starter@workspace:."
   dependencies:
+    "@getmash/client-sdk": ^1.0.0
     autoprefixer: ^10.4.7
     gatsby: ^4.17.2
     gatsby-plugin-image: ^2.17.0
@@ -16264,6 +16294,15 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
   languageName: node
   linkType: hard
 

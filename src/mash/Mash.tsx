@@ -1,18 +1,7 @@
 import * as React from "react";
+import Mash from "@getmash/client-sdk";
 
-import useScript, { State } from "../hooks/useScript";
 import useSiteMetdata from "../queries/useSiteMetadata";
-
-type MashSettings = {
-  id: string;
-};
-
-export type Mash = {
-  isReady(): boolean;
-  init(settings: MashSettings): Promise<void>;
-  hasAccess(resourceID: string): Promise<boolean>;
-  userHasValidBudget(resourceID: string): Promise<boolean>;
-};
 
 type MashContextValue = {
   mash: Mash | null;
@@ -24,23 +13,16 @@ const MashContext = React.createContext<MashContextValue>({
   ready: false,
 });
 
-export default function Mash(props: React.PropsWithChildren<{}>) {
-  const [mash, setMash] = React.useState<Mash | null>(null);
+const mash = new Mash();
+
+export default function MashProvider(props: React.PropsWithChildren<{}>) {
   const [ready, setReadyStatus] = React.useState(false);
 
   const metadata = useSiteMetdata();
-  const state = useScript(metadata.mash.sdk);
 
   React.useEffect(() => {
-    if (state === State.Ready && window.Mash) {
-      setMash(window.Mash);
-    }
-  }, [state]);
-
-  React.useEffect(() => {
-    if (!mash) return;
-    mash.init({ id: metadata.mash.earnerID }).then(() => setReadyStatus(true));
-  }, [mash]);
+    mash.init({ id: metadata.mash.earnerID, position: metadata.mash.walletPosition }).then(() => setReadyStatus(true));
+  }, []);
 
   return <MashContext.Provider value={{ mash, ready }}>{props.children}</MashContext.Provider>;
 }

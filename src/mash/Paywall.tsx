@@ -45,7 +45,7 @@ export default function Paywall(props: PaywallProps) {
     setState(ContentState.Loading);
 
     mash
-      .hasAccess(metadata.mash.resourceID)
+      .access(metadata.mash.resourceID)
       .then(result => {
         if (result) {
           LocalStorage.set(key(props.chapter.id), true);

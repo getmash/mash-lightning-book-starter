@@ -11,7 +11,7 @@ export default function BoostButton() {
   return (
     <>
       <Helmet>
-        <script async src="https://components.getmash.com/boost/boost.js"></script>
+        <script defer src="https://components.getmash.com/boost/boost.js"></script>
       </Helmet>
       <mash-boost-button
         icon={metadata.mash.boosts.icon}

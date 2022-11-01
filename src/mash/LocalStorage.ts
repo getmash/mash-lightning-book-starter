@@ -35,13 +35,6 @@ function getStorage(): LocalStorage {
   }
 }
 
-const storage = getStorage();
-
-if (storage instanceof InMemoryStorage) {
-  /* eslint-disable-next-line */
-  console.warn("@mash/localstorage is using in-memory storage backend. window.localStorage is undefined");
-}
-
 const localstorage = {
   set<T = Record<string, unknown>>(key: string, data: T): void {
     getStorage().setItem(key, JSON.stringify(data));

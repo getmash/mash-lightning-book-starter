@@ -20,12 +20,18 @@ class InMemoryStorage implements LocalStorage {
   }
 }
 
+const inMemoryStorage = null;
+function getInMemoryStorage() {
+  if (!inMemoryStorage) return new InMemoryStorage();
+  return inMemoryStorage;
+}
+
 function getStorage(): LocalStorage {
   try {
     // See if localStorage is available
     return window.localStorage;
   } catch {
-    return new InMemoryStorage();
+    return getInMemoryStorage();
   }
 }
 
@@ -38,10 +44,10 @@ if (storage instanceof InMemoryStorage) {
 
 const localstorage = {
   set<T = Record<string, unknown>>(key: string, data: T): void {
-    storage.setItem(key, JSON.stringify(data));
+    getStorage().setItem(key, JSON.stringify(data));
   },
   get<T = Record<string, unknown>>(key: string): T | null {
-    const data = storage.getItem(key);
+    const data = getStorage().getItem(key);
     if (!data) return null;
     try {
       return JSON.parse(data) as T;
@@ -50,7 +56,7 @@ const localstorage = {
     }
   },
   remove(key: string) {
-    storage.removeItem(key);
+    getStorage().removeItem(key);
   },
 };
 

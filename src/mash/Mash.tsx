@@ -25,6 +25,9 @@ export default function MashProvider(props: React.PropsWithChildren<{}>) {
       setMash(_mash);
       setReadyStatus(true);
     });
+    // Required to support web components
+    // @ts-ignore
+    window.Mash = _mash;
   }, []);
 
   return <MashContext.Provider value={{ mash, ready }}>{props.children}</MashContext.Provider>;

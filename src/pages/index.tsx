@@ -3,7 +3,6 @@ import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import { FaAmazon, FaBookOpen, FaEnvelope, FaTwitter } from "react-icons/fa";
 
-import { useMash } from "../mash/Mash";
 import { useSizeDocumentBody } from "../hooks/useSizeDocumentBody";
 import useTableOfContents from "../queries/useTableOfContents";
 import Seo from "../components/Seo";
@@ -12,8 +11,6 @@ import DonateButton from "../mash/DonateButton";
 import BoostButton from "../mash/BoostButton";
 
 function BookIndex() {
-  const { ready } = useMash();
-
   const metadata = useSiteMetdata();
   const toc = useTableOfContents();
 
@@ -23,7 +20,7 @@ function BookIndex() {
     <>
       <Seo />
       <BoostButton />
-      <div className="page overflow-hidden flex flex-col h-full" style={{ visibility: !ready ? "hidden" : "visible" }}>
+      <div className="page overflow-hidden flex flex-col h-full">
         <div
           className="header py-4 px-8 border font-bold text-sm sm:text-base flex items-center"
           style={{ minHeight: 64 }}

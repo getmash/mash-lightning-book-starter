@@ -20,8 +20,10 @@ export default function MashProvider(props: React.PropsWithChildren<{}>) {
   const metadata = useSiteMetdata();
 
   React.useEffect(() => {
-    const _mash = new Mash();
-    _mash.init({ id: metadata.mash.earnerID, position: metadata.mash.walletPosition }).then(() => {
+    const _mash = new Mash({
+      earnerID: metadata.mash.earnerID,
+    });
+    _mash.init().then(() => {
       setMash(_mash);
       setReadyStatus(true);
     });

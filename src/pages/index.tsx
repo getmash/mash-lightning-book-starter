@@ -29,7 +29,7 @@ function BookIndex() {
           <div className="grid-container grid grid-cols-1 sm:grid-cols-normal h-full w-full max-w-6xl m-auto">
             <div className="grid-left-col flex flex-col items-center gap-6 mb-8 sm:mb-0">
               <div className="img-wrapper">
-                <StaticImage src="../images/book_cover.png" alt="Mash" height={350} />
+                <StaticImage src="../images/book_cover.png" alt="Mash" height={250} />
               </div>
               <div className="buttons-wrapper flex flex-col gap-4 w-full justify-center items-center">
                 <Link

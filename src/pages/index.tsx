@@ -8,7 +8,6 @@ import useTableOfContents from "../queries/useTableOfContents";
 import Seo from "../components/Seo";
 import useSiteMetdata from "../queries/useSiteMetadata";
 import DonateButton from "../mash/DonateButton";
-import BoostButton from "../mash/BoostButton";
 
 function BookIndex() {
   const metadata = useSiteMetdata();
@@ -19,7 +18,6 @@ function BookIndex() {
   return (
     <>
       <Seo />
-      <BoostButton />
       <div className="page overflow-hidden flex flex-col h-full">
         <div
           className="header py-4 px-8 border font-bold text-sm sm:text-base flex items-center"

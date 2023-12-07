@@ -1,7 +1,13 @@
 import * as React from "react";
-import Mash from "@getmash/client-sdk";
 
 import useSiteMetdata from "../queries/useSiteMetadata";
+import useScript, { State } from "../hooks/useScript";
+
+export interface Mash {
+  init(): Promise<void>;
+  access(resourceID: string): Promise<boolean>;
+  userHasValidBudget(resourceID: string): Promise<boolean>;
+}
 
 type MashContextValue = {
   mash: Mash | null;
@@ -15,24 +21,33 @@ const MashContext = React.createContext<MashContextValue>({
 
 export default function MashProvider(props: React.PropsWithChildren<{}>) {
   const [mash, setMash] = React.useState<Mash | null>(null);
-  const [ready, setReadyStatus] = React.useState(false);
 
   const metadata = useSiteMetdata();
+  const state = useScript("https://cdn.mash.com/mash/mash.js");
 
   React.useEffect(() => {
-    const _mash = new Mash({
+    window.MashSettings = {
       earnerID: metadata.mash.earnerID,
-    });
-    _mash.init().then(() => {
-      setMash(_mash);
-      setReadyStatus(true);
-    });
-    // Required to support web components
-    // @ts-ignore
-    window.Mash = _mash;
+      options: {
+        reactions: {
+          target: "attribute",
+          enabled: true,
+        },
+      },
+    };
   }, []);
 
-  return <MashContext.Provider value={{ mash, ready }}>{props.children}</MashContext.Provider>;
+  React.useEffect(() => {
+    if (state === State.Ready) {
+      if (window.Mash) {
+        window.Mash.init().then(() => {
+          setMash(window.Mash!);
+        });
+      }
+    }
+  }, [state]);
+
+  return <MashContext.Provider value={{ mash, ready: Boolean(mash) }}>{props.children}</MashContext.Provider>;
 }
 
 export function useMash() {

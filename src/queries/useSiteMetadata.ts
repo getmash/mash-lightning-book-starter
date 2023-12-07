@@ -1,4 +1,3 @@
-import { WalletPosition } from "@getmash/client-sdk/dist/settings";
 import { graphql, useStaticQuery } from "gatsby";
 
 type FloatLocation = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center";
@@ -16,8 +15,6 @@ type MashConfig = {
   earnerID: string;
   resourceID: string;
   handle: string;
-  boosts: MashBoostConfig;
-  walletPosition: WalletPosition;
 };
 
 type Chapter = {
@@ -66,24 +63,6 @@ const QUERY = graphql`
         mash {
           earnerID
           resourceID
-          walletPosition {
-            desktop {
-              floatLocation
-              shiftUp
-              shiftRight
-              shiftLeft
-            }
-            mobile {
-              floatLocation
-            }
-          }
-          boosts {
-            icon
-            variant
-            layoutMode
-            floatLocationDesktop
-            floatLocationMobile
-          }
         }
       }
     }

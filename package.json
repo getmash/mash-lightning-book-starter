@@ -6,12 +6,11 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "gatsby develop",
+    "start": "gatsby develop --verbose",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@getmash/client-sdk": "^2.6.1",
     "autoprefixer": "^10.4.7",
     "gatsby": "^4.17.2",
     "gatsby-plugin-image": "^2.17.0",

@@ -1479,13 +1479,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ctrl/tinycolor@npm:^3.4.1":
-  version: 3.6.0
-  resolution: "@ctrl/tinycolor@npm:3.6.0"
-  checksum: 4d1e481b4d7f9bb23d21b5436726034d37c2a1bc751b5169ef29ead0237e96443dbccbcfa887e20c3a65ba1b5e270063bb21b4034eac97561b980cbbd5e92a16
-  languageName: node
-  linkType: hard
-
 "@endemolshinegroup/cosmiconfig-typescript-loader@npm:3.0.2":
   version: 3.0.2
   resolution: "@endemolshinegroup/cosmiconfig-typescript-loader@npm:3.0.2"
@@ -1568,37 +1561,6 @@ __metadata:
     html-entities: ^2.3.3
     strip-ansi: ^6.0.0
   checksum: 61622028d0a6b1441bf514fbbb5629227d11190ef5fc1c16d1b2803dcc9aecc731fc430b170d76a7567f2dfee022f595f7e12d68fb9c1fb7afa416ff98d411df
-  languageName: node
-  linkType: hard
-
-"@getmash/client-sdk@npm:^2.6.1":
-  version: 2.16.1
-  resolution: "@getmash/client-sdk@npm:2.16.1"
-  dependencies:
-    "@ctrl/tinycolor": ^3.4.1
-    "@getmash/jsonrpc-engine": ^2.0.0
-    "@getmash/post-message": ^2.1.1
-  checksum: db64970d3561c374d0d6ad736ee936b53febe7da2ec2fe8ede414230199f258018a388ecfccfbe7d168ee968532a5afac1ce7080ac559a7fe29a7b3f7f35be6b
-  languageName: node
-  linkType: hard
-
-"@getmash/jsonrpc-engine@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@getmash/jsonrpc-engine@npm:2.0.0"
-  dependencies:
-    "@getmash/post-message": ^2.0.0
-    uuid: ^9.0.0
-  checksum: e294f0f0591e985e8ee8b66c513f9aafa43aba6fdcf7adb4b91dbc88edf5269b4a2d94bac22d6927ef31e66f455c67ca9a8a9c19913c87b3b2428796f46dd662
-  languageName: node
-  linkType: hard
-
-"@getmash/post-message@npm:^2.0.0, @getmash/post-message@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "@getmash/post-message@npm:2.1.1"
-  dependencies:
-    debug: ^4.3.4
-    uuid: ^9.0.0
-  checksum: 3db747b7ec4326b0356971aca1e46dddbca41118c23526008f3659d23d1d00c9fdc131365ddf87bf66cf9070f4c6cdb1a6535bc6a1ddcb7945f8fd6d31388573
   languageName: node
   linkType: hard
 
@@ -11055,7 +11017,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mash-lightning-book-starter@workspace:."
   dependencies:
-    "@getmash/client-sdk": ^2.6.1
     autoprefixer: ^10.4.7
     gatsby: ^4.17.2
     gatsby-plugin-image: ^2.17.0
@@ -16303,15 +16264,6 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "uuid@npm:9.0.0"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
   languageName: node
   linkType: hard
 

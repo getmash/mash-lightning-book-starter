@@ -10,7 +10,6 @@ import QuickNav from "../components/QuickNav";
 import Seo from "../components/Seo";
 import { useSizeDocumentBody } from "../hooks/useSizeDocumentBody";
 import useSiteMetdata from "../queries/useSiteMetadata";
-import BoostButton from "../mash/BoostButton";
 
 const LEFT_KEY = "ArrowLeft";
 const RIGHT_KEY = "ArrowRight";
@@ -76,7 +75,6 @@ function ChapterTemplate(props: PageProps<PageQueryData>) {
   return (
     <>
       <Seo title={markdownRemark.frontmatter.title} />
-      <BoostButton />
       <div className="page overflow-hidden flex flex-col h-full">
         <div className="header py-4 px-8 border font-bold flex items-center justify-between">
           <Link to="/" className="text-black hover:underline">
@@ -86,7 +84,7 @@ function ChapterTemplate(props: PageProps<PageQueryData>) {
         </div>
         <div className="h-full w-full flex flex-col overflow-auto">
           <MashReadyCheck>
-            <article className="max-w-reading w-full m-auto px-4 pt-2 pb-8">
+            <article className="max-w-reading w-full m-auto px-4 pt-2 pb-8" data-mash-reactions="enabled">
               <Paywall chapter={markdownRemark} />
             </article>
             {next && (
